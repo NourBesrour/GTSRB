@@ -11,9 +11,9 @@ model = load_model('GTSRB.h5')
 st.title("German Traffic Sign Recognition Benchmark Dataset")
 st.write("Upload an image to classify it.")
 
-uploaded_file1 = st.file_uploader("Put the image here", type=["png"])
-uploaded_file2 = st.file_uploader("Put the image here", type=["png"])
-uploaded_file3 = st.file_uploader("Put the image here", type=["png"])
+uploaded_file1 = st.file_uploader("Put the image here", type=["png"], key="uploader1")
+uploaded_file2 = st.file_uploader("Put the image here", type=["png"], key="uploader2")
+uploaded_file3 = st.file_uploader("Put the image here", type=["png"], key="uploader3")
 
 selected_file = st.radio(
     "Choose the image to classify",
@@ -42,94 +42,53 @@ if selected_image is not None:
     # Make a prediction
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction, axis=1)[0]
-    if predicted_class == 0:
-        st.write(f"Prediction: Speed limit (20km/h)")
-    elif predicted_class == 1:
-        st.write(f"Prediction: Speed limit (30km/h)")
-    elif predicted_class == 2:
-        st.write(f"Prediction: Speed limit (50km/h)")   
-    elif predicted_class == 3:
-        st.write(f"Prediction: Speed limit (60km/h)")
-    elif predicted_class == 4:
-        st.write(f"Prediction: Speed limit (70km/h)")
-    elif predicted_class == 5:
-        st.write(f"Prediction: Speed limit (80km/h)")   
-    elif predicted_class == 6:
-        st.write(f"Prediction: End of speed limit (80km/h)")       
-    elif predicted_class == 7:
-        st.write(f"Prediction: Speed limit (100km/h)")
-    elif predicted_class == 8:
-        st.write(f"Prediction: Speed limit (120km/h)")   
-    elif predicted_class == 9:
-        st.write(f"Prediction: No passing")
-    elif predicted_class == 10:
-        st.write(f"Prediction: No passing for vehicles over 3.5 metric tons")
-    elif predicted_class == 11:
-        st.write(f"Prediction: Right-of-way at the next intersection")   
-    elif predicted_class == 12:
-        st.write(f"Prediction: Priority road") 
-    elif predicted_class == 13:
-        st.write(f"Prediction: Yield")
-    elif predicted_class == 14:
-        st.write(f"Prediction: Stop")   
-    elif predicted_class == 15:
-        st.write(f"Prediction: No Vehicles")
-    elif predicted_class == 16:
-        st.write(f"Prediction: Vehicles over 3.5 metric tons prohibited")
-    elif predicted_class == 17:
-        st.write(f"Prediction: No entry")   
-    elif predicted_class == 18:
-        st.write(f"Prediction: General caution")       
-    elif predicted_class == 19:
-        st.write(f"Prediction: Dangerous curve to the left")
-    elif predicted_class == 20:
-        st.write(f"Prediction: Dangerous curve to the right")   
-    elif predicted_class == 21:
-        st.write(f"Prediction: Double curve")
-    elif predicted_class == 22:
-        st.write(f"Prediction: Bumpy road")
-    elif predicted_class == 23:
-        st.write(f"Prediction: Slippery road")   
-    elif predicted_class == 24:
-        st.write(f"Prediction: Road narrows on the right")
-    elif predicted_class == 25:
-        st.write(f"Prediction: Road work")
-    elif predicted_class == 26:
-        st.write(f"Prediction: Traffic signals")   
-    elif predicted_class == 27:
-        st.write(f"Prediction: Pedestrians")
-    elif predicted_class == 28:
-        st.write(f"Prediction: Children crossing")
-    elif predicted_class == 29:
-        st.write(f"Prediction: Bicycles crossing")   
-    elif predicted_class == 30:
-        st.write(f"Prediction: Beware of ice/snow")       
-    elif predicted_class == 31:
-        st.write(f"Prediction: Wild animals crossing")
-    elif predicted_class == 32:
-        st.write(f"Prediction: End of all speed and passing limits")   
-    elif predicted_class == 33:
-        st.write(f"Prediction: Turn right ahead")
-    elif predicted_class == 34:
-        st.write(f"Prediction: Turn left ahead")
-    elif predicted_class == 35:
-        st.write(f"Prediction: Ahead only")   
-    elif predicted_class == 36:
-        st.write(f"Prediction: Go straight or right")    
-    elif predicted_class == 37:
-        st.write(f"Prediction: Go straight or left")
-    elif predicted_class ==38:
-        st.write(f"Prediction: Keep right")   
-    elif predicted_class == 39:
-        st.write(f"Prediction: Keep left")
-    elif predicted_class == 40:
-        st.write(f"Prediction: Roundabout mandatory")
-    elif predicted_class == 41:
-        st.write(f"Prediction: End of no passing")   
-    elif predicted_class == 42:
-        st.write(f"Prediction: End of no passing by vehicles over 3.5 metric tons")       
-   
-    
 
+    # Dictionary of class labels
+    class_labels = {
+        0: "Speed limit (20km/h)",
+        1: "Speed limit (30km/h)",
+        2: "Speed limit (50km/h)",
+        3: "Speed limit (60km/h)",
+        4: "Speed limit (70km/h)",
+        5: "Speed limit (80km/h)",
+        6: "End of speed limit (80km/h)",
+        7: "Speed limit (100km/h)",
+        8: "Speed limit (120km/h)",
+        9: "No passing",
+        10: "No passing for vehicles over 3.5 metric tons",
+        11: "Right-of-way at the next intersection",
+        12: "Priority road",
+        13: "Yield",
+        14: "Stop",
+        15: "No Vehicles",
+        16: "Vehicles over 3.5 metric tons prohibited",
+        17: "No entry",
+        18: "General caution",
+        19: "Dangerous curve to the left",
+        20: "Dangerous curve to the right",
+        21: "Double curve",
+        22: "Bumpy road",
+        23: "Slippery road",
+        24: "Road narrows on the right",
+        25: "Road work",
+        26: "Traffic signals",
+        27: "Pedestrians",
+        28: "Children crossing",
+        29: "Bicycles crossing",
+        30: "Beware of ice/snow",
+        31: "Wild animals crossing",
+        32: "End of all speed and passing limits",
+        33: "Turn right ahead",
+        34: "Turn left ahead",
+        35: "Ahead only",
+        36: "Go straight or right",
+        37: "Go straight or left",
+        38: "Keep right",
+        39: "Keep left",
+        40: "Roundabout mandatory",
+        41: "End of no passing",
+        42: "End of no passing by vehicles over 3.5 metric tons"
+    }
 
-    
+    # Display the prediction
+    st.write(f"Prediction: {class_labels.get(predicted_class, 'Unknown')}")
