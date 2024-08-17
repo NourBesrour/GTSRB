@@ -6,14 +6,6 @@ This project focuses on building and deploying a machine learning model to class
 
 - [Project Overview](#project-overview)
 - [Installation](#installation)
-- [Dataset](#dataset)
-- [Model Architecture](#model-architecture)
-- [Training the Model](#training-the-model)
-- [Running the Streamlit App](#running-the-streamlit-app)
-- [Results](#results)
-- [Future Work](#future-work)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
