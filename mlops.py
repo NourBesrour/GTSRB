@@ -11,12 +11,29 @@ model = load_model('GTSRB.h5')
 st.title("German Traffic Sign Recognition Benchmark Dataset")
 st.write("Upload an image to classify it.")
 
-uploaded_file = st.file_uploader("Put the image here", type=["png"])
+uploaded_file1 = st.file_uploader("Put the image here", type=["png"])
+uploaded_file2 = st.file_uploader("Put the image here", type=["png"])
+uploaded_file3 = st.file_uploader("Put the image here", type=["png"])
 
-if uploaded_file is not None:
+selected_file = st.radio(
+    "Choose the image to classify",
+    ("First Image", "Second Image", "Third Image")
+)
+
+# Determine which file was selected
+if selected_file == "First Image" and uploaded_file1 is not None:
+    selected_image = uploaded_file1
+elif selected_file == "Second Image" and uploaded_file2 is not None:
+    selected_image = uploaded_file2
+elif selected_file == "Third Image" and uploaded_file3 is not None:
+    selected_image = uploaded_file3
+else:
+    selected_image = None
+
+if selected_image is not None:
     # Load the image
-    image = Image.open(uploaded_file).convert('L').resize((50, 50))
-    st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
+    image = Image.open(selected_image).convert('L').resize((50, 50))
+    st.image(selected_image, caption='Uploaded Image', use_column_width=True)
 
     # Prepare the image for the model
     image = img_to_array(image)
