@@ -91,7 +91,7 @@ This will preprocess the dataset, build the model, and save the trained model as
 
 To run the Streamlit application, use the following command:
 ```bash
-streamlit run mlops2.py
+streamlit run mlops.py
 ```
 
 This will start a local server, and you can access the app in your web browser at `http://localhost:8501`.
