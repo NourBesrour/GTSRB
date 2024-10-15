@@ -113,13 +113,11 @@ The model is a Convolutional Neural Network (CNN) consisting of the following la
 ## Results
 
 After training, the model achieved the following results:
-- Test Loss: [Insert Test Loss]
-- Test Accuracy: [Insert Test Accuracy]
+- Test Loss: ![Alt text](lo.png)
+- Test Accuracy: ![Alt text](acc.png)
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
