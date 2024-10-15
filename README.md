@@ -113,8 +113,8 @@ The model is a Convolutional Neural Network (CNN) consisting of the following la
 ## Results
 
 After training, the model achieved the following results:
-- Test Loss: ![Alt text](lo.png)
-- Test Accuracy: ![Alt text](acc.png)
+![Alt text](lo.png)
+![Alt text](acc.png)
 
 ## Contributing
 
